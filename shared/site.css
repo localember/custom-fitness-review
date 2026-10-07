@@ -313,3 +313,14 @@ footer.site{background:#262828;color:#D9D6CF;padding:70px 0 0;font-size:15px}
 }
 .lisa .wrap.coaches{display:block}
 .visit a,.f-card a{overflow-wrap:anywhere}
+
+/* Phone menu focus/hover (2026-10-07, Design). After tapping the burger open
+   and closed, the teal ring stayed on it. Outline on :focus-visible only, never
+   on a plain :focus, and no hover paint on touch screens. Same approach as the
+   Capela le-nav.css fix (1729791). */
+.menu-btn:focus:not(:focus-visible),nav.main a:focus:not(:focus-visible){outline:0}
+.menu-btn:focus-visible{outline:3px solid var(--teal-deep);outline-offset:3px}
+@media (hover:none),(pointer:coarse){
+  nav.main .top:hover{background:none}
+  nav.main .sub a:hover{background:none;color:#444948}
+}
