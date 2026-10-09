@@ -76,5 +76,23 @@
       if(n){ n.hidden=false; n.focus(); }
     });
   });
+
+  /* Decorative background video (muted loop). Sources are added by script only when motion is OK:
+     prefers-reduced-motion or Save-Data keep the poster only. Phones (<=760px) get the 720 files.
+     Plays only while on screen. */
+  document.querySelectorAll('video[data-bgv]').forEach(function(v){
+    var conn=navigator.connection||{}, small=window.matchMedia('(max-width: 760px)').matches;
+    if(small && v.getAttribute('data-poster-sm')) v.setAttribute('poster', v.getAttribute('data-poster-sm'));
+    if(reduce || conn.saveData){ v.removeAttribute('autoplay'); return; }
+    var base=v.getAttribute('data-base'), w=small?'720':'1280';
+    [['webm','video/webm'],['mp4','video/mp4']].forEach(function(t){
+      var s=document.createElement('source'); s.src=base+'-'+w+'.'+t[0]; s.type=t[1]; v.appendChild(s);
+    });
+    v.muted=true; v.load();
+    var play=function(){ var pr=v.play(); if(pr && pr.catch) pr.catch(function(){}); };
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) play(); else v.pause(); }); },{threshold:0.05}).observe(v);
+    } else { play(); }
+  });
   var y=document.querySelector('[data-year]'); if(y) y.textContent=new Date().getFullYear();
 })();

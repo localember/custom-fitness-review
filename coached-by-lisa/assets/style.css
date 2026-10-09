@@ -36,7 +36,8 @@ h2 em,h1 em{font-style:italic;color:var(--br)}
 .tlink{font:600 14.5px/1.4 var(--sans);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--br);text-decoration-thickness:1.5px}
 .reveal-frame{--p:0;margin:64px auto 0;height:min(78vh,760px);display:flex;justify-content:center;overflow:hidden}
 .rf-inner{margin:0;height:100%;width:calc(56% + 44% * var(--p));border-radius:calc(220px * (1 - var(--p))) calc(220px * (1 - var(--p))) 0 0;overflow:hidden;transition:width .05s linear}
-.rf-inner img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(calc(1.12 - .12 * var(--p)))}
+.rf-inner img,.rf-inner video{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(calc(1.12 - .12 * var(--p)))}
+.rf-inner video{display:block;background:#2B2D2D}
 .rf-cap{font-size:13px;color:var(--mut);text-align:left;margin-top:14px;font-style:italic}
 /* facts */
 .facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:40px}
