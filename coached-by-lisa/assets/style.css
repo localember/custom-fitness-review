@@ -29,6 +29,8 @@ h2 em,h1 em{font-style:italic;color:var(--br)}
 .hero{padding:76px 0 0;text-align:center}
 .hero h1{font-size:clamp(46px,8.2vw,118px);line-height:.98;max-width:1100px;margin:0 auto}
 .h1-kicker{display:block;font:600 12.5px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--br);margin-bottom:26px}
+.hero-line{max-width:22em;margin:26px auto 0;font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:1.25;color:var(--ink)}
+.hero-line em{font-style:italic;color:var(--br)}
 .lede{max-width:640px;margin:28px auto 0;font-size:18px;color:var(--mut)}
 .ctas{display:flex;gap:28px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:34px}
 .btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font:600 15px/1 var(--sans);letter-spacing:.02em;padding:19px 30px;border-radius:2px;transition:background .2s}
@@ -157,7 +159,7 @@ section{scroll-margin-top:80px}
 .reveal.is-in{opacity:1;transform:none}
 .hero-copy>*{opacity:0;transform:translateY(16px);transition:opacity .8s ease-out,transform .8s ease-out}
 .is-loaded .hero-copy>*{opacity:1;transform:none}
-.is-loaded .hero-copy>*:nth-child(2){transition-delay:.12s}.is-loaded .hero-copy>*:nth-child(3){transition-delay:.24s}
+.is-loaded .hero-copy>*:nth-child(2){transition-delay:.12s}.is-loaded .hero-copy>*:nth-child(3){transition-delay:.24s}.is-loaded .hero-copy>*:nth-child(4){transition-delay:.36s}
 @media (prefers-reduced-motion:reduce){.reveal,.hero-copy>*{opacity:1!important;transform:none!important;transition:none!important}.rf-inner,.rf-inner img{transition:none}}
 /* responsive */
 @media (max-width:1100px){.plates{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:repeat(4,1fr)}}
@@ -185,6 +187,7 @@ section{scroll-margin-top:80px}
  .brand span{font-size:19px}
  .hero{padding-top:44px}
  .h1-kicker{font-size:11px;letter-spacing:.16em;margin-bottom:18px}
+ .hero-line{font-size:22px;margin-top:18px}
  .lede{font-size:16.5px;margin-top:20px}
  .ctas{flex-direction:column;gap:18px;margin-top:26px}.ctas .btn{width:100%;text-align:center}
  .reveal-frame{height:58vh;margin-top:40px}
