@@ -1,0 +1,45 @@
+name: Decode testimonial images
+on:
+  push:
+    branches: [main]
+    paths:
+      - "testimonials/assets/*.b64"
+      - ".github/workflows/decode-testimonial-images.yml"
+permissions:
+  contents: write
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode base64 images
+        run: |
+          python3 - << 'PY'
+          from pathlib import Path
+          import base64
+          root = Path("testimonials/assets")
+          changed = False
+          for p in sorted(root.glob("*.b64")):
+              dest = p.with_suffix("")  # name.webp.b64 -> name.webp
+              data = base64.b64decode("".join(p.read_text().split()))
+              if not dest.exists() or dest.read_bytes() != data:
+                  dest.write_bytes(data)
+                  changed = True
+                  print("wrote", dest, len(data))
+              else:
+                  print("unchanged", dest)
+          print("changed", changed)
+          Path("/tmp/decoded-changed").write_text("yes" if changed else "no")
+          PY
+      - name: Commit decoded images
+        run: |
+          if [ "$(cat /tmp/decoded-changed)" != "yes" ]; then
+            echo "No image changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add testimonials/assets/*.webp testimonials/assets/*.jpg || true
+          git diff --cached --quiet && exit 0
+          git commit -m "Decode testimonial preview photos"
+          git push
